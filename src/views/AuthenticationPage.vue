@@ -28,8 +28,8 @@ import {
 import { ref } from "vue";
 
 const loginToggle = ref(true)
-const togglePageSwitch = () => {
-    loginToggle.value = !loginToggle.value
+const togglePageSwitch = (login: boolean) => {
+    login ? loginToggle.value = true : loginToggle.value = false
 }
 </script>
 
@@ -43,11 +43,25 @@ const togglePageSwitch = () => {
 
             </ion-toolbar>
         </ion-header>
+        <ion-header>
+            <ion-toolbar>
+                <ion-segment value="all" mode="ios">
+                    <ion-segment-button value="all" @click="togglePageSwitch(true)">
+                        <ion-label>Log in</ion-label>
+                    </ion-segment-button>
+                    <ion-segment-button value="favorites" @click="togglePageSwitch(false)">
+                        <ion-label>Sign up</ion-label>
+                    </ion-segment-button>
+                </ion-segment>
+            </ion-toolbar>
+
+        </ion-header>
+
         <ion-content v-if="loginToggle">
             <ion-grid>
                 <ion-row class="ion-justify-content-center">
                     <ion-col>
-                        <ion-text class="ion-text-center ">
+                        <ion-text class="ion-text-center ion-text-uppercase">
                             <h1>Log in</h1>
                         </ion-text>
                     </ion-col>
@@ -62,7 +76,6 @@ const togglePageSwitch = () => {
                             <ion-label position="floating">Password</ion-label>
                             <ion-input type="password"></ion-input>
                         </ion-item>
-
                     </ion-col>
                 </ion-row>
                 <ion-row class="ion-justity-content-center">
@@ -80,10 +93,9 @@ const togglePageSwitch = () => {
             <ion-grid>
                 <ion-row class="ion-align-items-center ion-justify-content-center">
                     <ion-col>
-                        <ion-text class="ion-text-center">
-                            <h1>Log in</h1>
+                        <ion-text class="ion-text-center ion-text-uppercase">
+                            <h1>Sign up</h1>
                         </ion-text>
-
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -92,7 +104,6 @@ const togglePageSwitch = () => {
                             <ion-label position="floating">First name</ion-label>
                             <ion-input></ion-input>
                         </ion-item>
-
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -101,7 +112,6 @@ const togglePageSwitch = () => {
                             <ion-label position="floating">Last name</ion-label>
                             <ion-input></ion-input>
                         </ion-item>
-
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -110,7 +120,6 @@ const togglePageSwitch = () => {
                             <ion-label position="floating">Email</ion-label>
                             <ion-input></ion-input>
                         </ion-item>
-
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -119,7 +128,6 @@ const togglePageSwitch = () => {
                             <ion-label position="floating">Password</ion-label>
                             <ion-input></ion-input>
                         </ion-item>
-
                     </ion-col>
                 </ion-row>
                 <ion-row class="ion-justity-content-center">
@@ -133,21 +141,6 @@ const togglePageSwitch = () => {
                 </ion-row>
             </ion-grid>
         </ion-content>
-
-        <ion-footer>
-            <ion-toolbar>
-                <ion-segment>
-                    <ion-segment-button @click="togglePageSwitch">
-                        <ion-text>Log in</ion-text>
-                    </ion-segment-button>
-                    <ion-segment-button @click="togglePageSwitch">
-                        <ion-text>
-                            Sign Up
-                        </ion-text>
-                    </ion-segment-button>
-                </ion-segment>
-            </ion-toolbar>
-        </ion-footer>
     </ion-page>
 </template>
 <style>
