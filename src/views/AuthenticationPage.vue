@@ -79,9 +79,12 @@ const togglePageSwitch = () => {
         <ion-content v-else>
             <ion-grid>
                 <ion-row class="ion-align-items-center ion-justify-content-center">
-                    <ion-text class="ion-text-center">
-                        <h1>Log in</h1>
-                    </ion-text>
+                    <ion-col>
+                        <ion-text class="ion-text-center">
+                            <h1>Log in</h1>
+                        </ion-text>
+
+                    </ion-col>
                 </ion-row>
                 <ion-row>
                     <ion-col>
@@ -122,7 +125,7 @@ const togglePageSwitch = () => {
                 <ion-row class="ion-justity-content-center">
                     <ion-col>
                         <ion-buttons class="ion-justify-content-center ion-margin-top">
-                            <ion-button shape="round" expand="full" color="success" fill="outline" size="small">
+                            <ion-button shape="round" expand="full" color="success" fill="outline" size="large">
                                 Register user
                             </ion-button>
                         </ion-buttons>
