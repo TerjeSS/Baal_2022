@@ -3,6 +3,8 @@ import {
     IonPage,
     IonText,
     IonHeader,
+    IonRow,
+    IonLabel,
     IonCardHeader,
     IonToolbar,
     IonItem,
@@ -26,11 +28,34 @@ import {
     IonInput
 } from "@ionic/vue";
 import { ref } from "vue";
-
+import { useRouter } from "vue-router";
+import { authService } from '../services/directus.service'
 const loginToggle = ref(true)
 const togglePageSwitch = (login: boolean) => {
     login ? loginToggle.value = true : loginToggle.value = false
 }
+
+//State
+
+const loginInfo = ref({
+    email: "",
+    password: "",
+    first_name: ""
+})
+
+const router = useRouter();
+
+const login = async () => {
+    try {
+        await authService.login(loginInfo.value.email, loginInfo.value.password)
+        router.replace("/home")
+    } catch (error) {
+        console.log(error);
+
+    }
+}
+
+//Login
 </script>
 
 <template>
@@ -39,8 +64,8 @@ const togglePageSwitch = (login: boolean) => {
             <ion-toolbar>
                 <ion-title>
                     Baal ⛺️
+                    {{loginInfo.first_name}}
                 </ion-title>
-
             </ion-toolbar>
         </ion-header>
         <ion-header>
@@ -70,18 +95,19 @@ const togglePageSwitch = (login: boolean) => {
                     <ion-col>
                         <ion-item mode="ios">
                             <ion-label position="floating">Username</ion-label>
-                            <ion-input></ion-input>
+                            <ion-input type="email" v-model="loginInfo.email"></ion-input>
                         </ion-item>
                         <ion-item mode="ios">
                             <ion-label position="floating">Password</ion-label>
-                            <ion-input type="password"></ion-input>
+                            <ion-input type="password" v-model="loginInfo.password"></ion-input>
                         </ion-item>
                     </ion-col>
                 </ion-row>
                 <ion-row class="ion-justity-content-center">
                     <ion-col>
                         <ion-buttons class="ion-justify-content-center ion-margin-top">
-                            <ion-button shape="round" expand="full" color="success" fill="outline" size="small">
+                            <ion-button @click="login" shape="round" expand="full" color="success" fill="outline"
+                                size="small">
                                 Log in
                             </ion-button>
                         </ion-buttons>

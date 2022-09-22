@@ -8,9 +8,14 @@ import {
   IonCardTitle,
   IonContent,
   IonHeader,
+  IonSearchbar,
   IonPage,
   IonTitle,
   IonToolbar,
+  IonButton,
+  IonIcon,
+  IonButtons
+
 } from "@ionic/vue";
 import { addCircle } from "ionicons/icons";
 
@@ -44,32 +49,19 @@ function addCampingSpot() {
     <ion-header :translucent="true">
       <ion-toolbar>
         <ion-title>Baal ⛺️</ion-title>
-        <ion-searchbar
-          animated="true"
-          mode="ios"
-          class="header-searchbar"
-          placeholder="Search Campsites"
-        ></ion-searchbar>
+        <ion-searchbar animated="true" mode="ios" class="header-searchbar" placeholder="Search Campsites">
+        </ion-searchbar>
 
         <ion-buttons slot="primary">
           <ion-button @click="addCampingSpot">
-            <ion-icon
-              slot="icon-only"
-              color="primary"
-              :icon="addCircle"
-              size="large"
-            ></ion-icon>
+            <ion-icon slot="icon-only" color="primary" :icon="addCircle" size="large"></ion-icon>
           </ion-button>
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
 
     <ion-content :fullscreen="true">
-      <ion-card
-        v-for="spot in campingSpots"
-        :key="spot.id"
-        :router-link="'/detail/' + spot.id"
-      >
+      <ion-card v-for="spot in campingSpots" :key="spot.id" :router-link="'/detail/' + spot.id">
         <img :src="spot.imgUrl" />
         <ion-card-header>
           <ion-card-subtitle>{{ spot.hashtags }}</ion-card-subtitle>
@@ -85,4 +77,6 @@ function addCampingSpot() {
     </ion-content>
   </ion-page>
 </template>
-<style></style>
+<style>
+
+</style>
