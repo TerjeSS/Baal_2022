@@ -1,5 +1,6 @@
 <!-- setup for composition API -->
 <script setup lang="ts">
+import { directus } from "@/services/directus.service";
 import {
   IonCard,
   IonCardContent,
@@ -14,34 +15,39 @@ import {
   IonToolbar,
   IonButton,
   IonIcon,
-  IonButtons
+  IonButtons,
+  onIonViewDidEnter
 
 } from "@ionic/vue";
 import { addCircle } from "ionicons/icons";
 
 import { ref } from "vue";
-let campingSpots = ref([
-  {
-    id: 1,
-    title: "Fin plass ved Ulsrudvann",
-    description: "fant denne da jeg gikk kveldstur rundt vannet",
-    hashtags: "#østmarka #oslo #nærtur",
-    imgUrl:
-      "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2FtcGluZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=1000&q=60",
-  },
-]);
+let campingSpots = ref([])
 
-function addCampingSpot() {
-  const newSpot = {
-    id: 2,
-    title: "Fin plass ved Sognsvann",
-    description: "fant denne da jeg gikk morgentur rundt vannet",
-    hashtags: "#nordmarka #oslo #nærtur",
-    imgUrl:
-      "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2FtcGluZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=1000&q=60",
-  };
-  campingSpots.value = [newSpot, ...campingSpots.value];
+onIonViewDidEnter(async () => {
+  const result = await directus.graphql.items(
+    `
+    query {
+  camp_spots {
+    id
+    title
+    description
+    hashtags
+    image {
+      id
+    }
+    user_created {
+      first_name
+    }
+  }
 }
+    `
+  )
+
+  campingSpots.value = [...result.data.camp_spots]
+})
+
+
 </script>
 
 <template>
