@@ -51,9 +51,9 @@ const login = async () => {
         router.replace("/home")
     } catch (error) {
         console.log(error);
-
     }
 }
+
 
 //Login
 </script>

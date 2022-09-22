@@ -59,7 +59,7 @@ onIonViewDidEnter(async () => {
         </ion-searchbar>
 
         <ion-buttons slot="primary">
-          <ion-button @click="addCampingSpot">
+          <ion-button>
             <ion-icon slot="icon-only" color="primary" :icon="addCircle" size="large"></ion-icon>
           </ion-button>
         </ion-buttons>
