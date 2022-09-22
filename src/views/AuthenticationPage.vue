@@ -132,14 +132,7 @@ const login = async () => {
                         </ion-item>
                     </ion-col>
                 </ion-row>
-                <ion-row>
-                    <ion-col>
-                        <ion-item mode="ios">
-                            <ion-label position="floating">Last name</ion-label>
-                            <ion-input></ion-input>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
+
                 <ion-row>
                     <ion-col>
                         <ion-item mode="ios">
