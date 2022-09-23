@@ -20,10 +20,17 @@ import {
 
 } from "@ionic/vue";
 import { addCircle } from "ionicons/icons";
-
 import { ref } from "vue";
+
+
+
 let campingSpots = ref([])
 
+//State
+
+
+
+//Ligner på useState. Utfører spørring på Directus-objektet.
 onIonViewDidEnter(async () => {
   const result = await directus.graphql.items(
     `

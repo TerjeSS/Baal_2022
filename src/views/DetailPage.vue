@@ -23,10 +23,13 @@ import { ref } from "vue";
 import { addCircle } from "ionicons/icons";
 import { chatboxOutline } from "ionicons/icons";
 
+//Route
 const route = useRoute();
-
 const { id } = route.params;
 
+
+
+// Dummy data 
 const campSite = ref({
   id: 1,
   title: "Fin plass ved Ulsrudvann",

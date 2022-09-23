@@ -30,21 +30,22 @@ import {
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { authService } from '../services/directus.service'
-const loginToggle = ref(true)
-const togglePageSwitch = (login: boolean) => {
-    login ? loginToggle.value = true : loginToggle.value = false
-}
+
+
+const router = useRouter();
+
 
 //State
-
+const loginToggle = ref(true)
 const loginInfo = ref({
     email: "",
     password: "",
     first_name: ""
 })
 
-const router = useRouter();
 
+
+//Function to log in user
 const login = async () => {
     try {
         await authService.login(loginInfo.value.email, loginInfo.value.password)
@@ -54,8 +55,12 @@ const login = async () => {
     }
 }
 
+//Toggle the switch to login / register
+const togglePageSwitch = (login: boolean) => {
+    login ? loginToggle.value = true : loginToggle.value = false
+}
 
-//Login
+
 </script>
 
 <template>

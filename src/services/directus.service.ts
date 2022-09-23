@@ -1,6 +1,7 @@
 
 import {Directus} from '@directus/sdk'
 
+//initiate the Directus object
 export const directus = new Directus("https://izrz9mc2.directus.app/", {
     auth: {
         mode: 'json'

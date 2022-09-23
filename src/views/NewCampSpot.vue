@@ -18,6 +18,10 @@ import {
     IonTitle,
     IonContent,
 } from "@ionic/vue";
+
+
+//State
+
 </script>
 <template>
     <ion-page>
@@ -52,13 +56,16 @@ import {
                             </ion-textarea>
                         </ion-item>
                         <ion-item>
-                            <ion-label position="floating">
+                            <ion-label>
                                 <ion-text>
                                     <h4>Description</h4>
                                 </ion-text>
                             </ion-label>
-                            <ion-input type="file">
-                            </ion-input>
+                            <ion-item>
+
+                                <ion-input type="file">
+                                </ion-input>
+                            </ion-item>
                         </ion-item>
 
                     </ion-col>
